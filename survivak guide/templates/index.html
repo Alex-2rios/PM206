@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survival Guide: UPQ</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<div class="container my-5">
+    <div class="text-center mb-5">
+        <h1 class="display-4 text-danger fw-bold">Survival Guide: El Reto Móvil</h1>
+        <p class="lead">Guía interactiva para sobrevivir a la materia de Programación Móvil.</p>
+        <a href="/reset" class="btn btn-sm btn-outline-secondary">Reiniciar Aventura</a>
+    </div>
+
+    {% if error %}
+    <div class="alert alert-danger" role="alert">
+        {{ error }}
+    </div>
+    {% endif %}
+
+    <div class="card mb-4 shadow-sm border-danger">
+        <div class="card-header bg-danger text-white">
+            <h2 class="h5 mb-0">🏛️ 1. La Cámara de las Reglas</h2>
+        </div>
+        <div class="card-body">
+            <p><strong>Normas de Supervivencia:</strong></p>
+            <ul>
+                <li>Se requiere 80% de asistencia para evaluación parcial.</li>
+                <li>Tolerancia máxima de 10 minutos (solo a las 7:00 am y 14:00 pm).</li>
+                <li>Faltas se justifican en máximo 24 horas vía correo.</li>
+                <li>Plagio o copia = Reprobar la asignatura.</li>
+                <li>Prohibido comer, tomar líquidos y usar audífonos en clase.</li>
+            </ul>
+            
+            {% if nivel == 1 %}
+            <form action="/" method="POST">
+                <input type="hidden" name="seccion" value="reglas">
+                
+                <div class="mb-3">
+                    <label class="form-label">1. ¿Qué porcentaje mínimo de asistencia necesitas?</label>
+                    <select name="q1_reglas" class="form-select" required>
+                        <option value="">Selecciona una opción...</option>
+                        <option value="60">60%</option>
+                        <option value="80">80%</option>
+                        <option value="100">100%</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">2. ¿Cuál es el tiempo máximo de tolerancia?</label>
+                    <select name="q2_reglas" class="form-select" required>
+                        <option value="">Selecciona una opción...</option>
+                        <option value="0">Sin tolerancia</option>
+                        <option value="10">10 minutos</option>
+                        <option value="15">15 minutos</option>
+                    </select>
+                </div>
+
+                <div class="form-check mb-3">
+                    <input class="form-check-input" type="checkbox" name="chk_reglas" id="chk_reglas" required>
+                    <label class="form-check-label fw-bold" for="chk_reglas">
+                        Check de Compromiso: Me comprometo a cumplir las reglas del aula.
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-danger">Desbloquear Siguiente Nivel</button>
+            </form>
+            {% else %}
+            <div class="alert alert-success">¡Nivel Completado!</div>
+            {% endif %}
+        </div>
+    </div>
+
+    {% if nivel >= 2 %}
+    <div class="card mb-4 shadow-sm border-warning">
+        <div class="card-header bg-warning text-dark">
+            <h2 class="h5 mb-0">🔮 2. El Oráculo de las Notas</h2>
+        </div>
+        <div class="card-body">
+            <p><strong>Criterios de Evaluación:</strong></p>
+            <ul>
+                <li><strong>1er y 2do Parcial:</strong> Conocimiento 40%, Desempeño 20%, Producto 30%, Integrador 10%.</li>
+                <li><strong>3er Parcial:</strong> Conocimiento 10%, Desempeño 10%, Producto 30%, Proyecto Integrador 50%.</li>
+            </ul>
+
+            {% if nivel == 2 %}
+            <form action="/" method="POST">
+                <input type="hidden" name="seccion" value="notas">
+                
+                <div class="mb-3">
+                    <label class="form-label">1. ¿Cuánto vale la Evidencia de Conocimiento en el 1er Parcial?</label>
+                    <select name="q1_notas" class="form-select" required>
+                        <option value="">Selecciona...</option>
+                        <option value="10">10%</option>
+                        <option value="40">40%</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">2. ¿Cuánto vale el Proyecto Integrador en el 3er Parcial?</label>
+                    <select name="q2_notas" class="form-select" required>
+                        <option value="">Selecciona...</option>
+                        <option value="10">10%</option>
+                        <option value="50">50%</option>
+                    </select>
+                </div>
+
+                <div class="form-check mb-3">
+                    <input class="form-check-input" type="checkbox" name="chk_notas" id="chk_notas" required>
+                    <label class="form-check-label fw-bold" for="chk_notas">
+                        Check de Compromiso: Comprendo el peso del Proyecto Integrador.
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-warning">Desbloquear Siguiente Nivel</button>
+            </form>
+            {% else %}
+            <div class="alert alert-success">¡Nivel Completado!</div>
+            {% endif %}
+        </div>
+    </div>
+    {% endif %}
+
+    {% if nivel >= 3 %}
+    <div class="card mb-4 shadow-sm border-info">
+        <div class="card-header bg-info text-white">
+            <h2 class="h5 mb-0">⚔️ 3. Skills a Desbloquear</h2>
+        </div>
+        <div class="card-body">
+            <p><strong>Objetivos de la Asignatura:</strong></p>
+            <ul>
+                <li>Desarrollar apps mediante lenguajes, entornos, UI, y patrones de diseño.</li>
+                <li>Crear soluciones tecnológicas multiplataforma utilizando Programación Orientada a Objetos.</li>
+            </ul>
+
+            {% if nivel == 3 %}
+            <form action="/" method="POST">
+                <input type="hidden" name="seccion" value="skills">
+                
+                <div class="mb-3">
+                    <label class="form-label">1. ¿Qué tipo de soluciones vas a crear?</label>
+                    <select name="q1_skills" class="form-select" required>
+                        <option value="">Selecciona...</option>
+                        <option value="multi">Soluciones multiplataforma</option>
+                        <option value="escritorio">Aplicaciones de escritorio puro</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">2. ¿Qué paradigma de programación aplicarás fuertemente?</label>
+                    <select name="q2_skills" class="form-select" required>
+                        <option value="">Selecciona...</option>
+                        <option value="poo">Programación Orientada a Objetos (POO)</option>
+                        <option value="estructurada">Programación Estructurada</option>
+                    </select>
+                </div>
+
+                <div class="form-check mb-3">
+                    <input class="form-check-input" type="checkbox" name="chk_skills" id="chk_skills" required>
+                    <label class="form-check-label fw-bold" for="chk_skills">
+                        Check de Compromiso: Aplicaré buenas prácticas y diseño orientado a objetos.
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-info text-white">Desbloquear Siguiente Nivel</button>
+            </form>
+            {% else %}
+            <div class="alert alert-success">¡Nivel Completado!</div>
+            {% endif %}
+        </div>
+    </div>
+    {% endif %}
+
+    {% if nivel >= 4 %}
+    <div class="card mb-4 shadow-sm border-success">
+        <div class="card-header bg-success text-white">
+            <h2 class="h5 mb-0">⏳ 4. La Línea del Tiempo</h2>
+        </div>
+        <div class="card-body">
+            <p><strong>Fechas de Evaluación 2026:</strong></p>
+            <ul>
+                <li>1er Parcial: 02 de Junio</li>
+                <li>2do Parcial: 07 de Julio</li>
+                <li>3er Parcial: 11 de Agosto</li>
+                <li>Exámenes Finales: Del 17 al 20 de Agosto</li>
+            </ul>
+
+            {% if nivel == 4 %}
+            <form action="/" method="POST">
+                <input type="hidden" name="seccion" value="tiempo">
+                
+                <div class="mb-3">
+                    <label class="form-label">1. ¿En qué mes se evalúa el 2do Parcial?</label>
+                    <select name="q1_tiempo" class="form-select" required>
+                        <option value="">Selecciona...</option>
+                        <option value="junio">Junio</option>
+                        <option value="julio">Julio</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">2. ¿Cuándo inician los Exámenes Finales?</label>
+                    <select name="q2_tiempo" class="form-select" required>
+                        <option value="">Selecciona...</option>
+                        <option value="11_agosto">11 de Agosto</option>
+                        <option value="17_agosto">17 de Agosto</option>
+                    </select>
+                </div>
+
+                <div class="form-check mb-3">
+                    <input class="form-check-input" type="checkbox" name="chk_tiempo" id="chk_tiempo" required>
+                    <label class="form-check-label fw-bold" for="chk_tiempo">
+                        Check de Compromiso: Agendaré estas fechas y prepararé mis entregas a tiempo.
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-success">Finalizar Reto</button>
+            </form>
+            {% else %}
+            <div class="alert alert-success">
+                <h4 class="alert-heading">🎉 ¡Reto Superado!</h4>
+                <p>Estás completamente preparado para sobrevivir a la clase de Programación Móvil.</p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    {% endif %}
+
+</div>
+
+</body>
+</html>
