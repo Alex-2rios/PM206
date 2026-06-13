@@ -9,15 +9,18 @@ import { Perfil } from './components/Perfil';
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>------------Componente Nativos------------</Text>
-      <Image source={require('./assets/wave.png')}/>
-      <Text>Hola mundo RN!</Text>
-      <Text>------------Componente Simple------------</Text>
-      <Saludo></Saludo>   
-      <Text>------------Componente Compuesto------------</Text> 
-      <Salud2></Salud2> 
-      <Text>------------Componente Perfi  l------------</Text>
-      <Perfil></Perfil>
+      <Perfil  nombre="Alex Rios Carballo" carrera="Sistemas" materia="Programación Móvil" cuatrimestre="9no Cuatrimestre"> </Perfil>
+      <Text>-----------------------------------------------------------------------------------------</Text>
+
+      <Text>-----------------------------------------------------------------------------------------</Text>
+
+      <Perfil 
+      nombre="Alex Rios Carballo" 
+      carrera="Sistemas" 
+      materia="Programación Móvil" 
+      cuatrimestre="9no Cuatrimestre"> 
+      </Perfil>
+
       <StatusBar style="auto" />
     
     </View>
