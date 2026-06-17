@@ -1,18 +1,18 @@
 
 /* Perfil usando Desestructuración */
-import { Text, View, Button} from 'react-native';
+import { Text, View, Button, StyleSheet} from 'react-native';
 import React, {useState} from 'react';
 
-export const Perfil = ({ nombre, carrera, materia, cuatrimestre }) => {
+export const Perfil = ({ nombre, carrera, materia, cuatrimestre, style}) => {
     const [mostrar, setMostrar] = useState(false);
     return(
-        <View>
-            <Text>{nombre}</Text>
+        <View style={[styles.tarjeta, style]}>
+            <Text style={styles.nombre}>{nombre}</Text>
             {mostrar && 
             <>
-            <Text>{carrera}</Text>
-            <Text>{materia}</Text>
-            <Text>{cuatrimestre}</Text>
+            <Text style={styles.carrera}>{carrera}</Text>
+            <Text style={styles.otroTexto}>{materia}</Text>
+            <Text style={styles.otroTexto}>{cuatrimestre}</Text>
             </>
             }   
             <Button title= "Mostrar Perfil"
@@ -21,6 +21,30 @@ export const Perfil = ({ nombre, carrera, materia, cuatrimestre }) => {
         </View>
     );
 }
+
+const styles = StyleSheet.create({
+    nombre: {
+        fontSize: 24,
+        fontWeight: 700,
+        textTransform: 'uppercase',
+    },
+    carrera: {
+        fontSize: 18,
+        color: 'blue',
+        fontFamily: 'Roboto',
+    },
+    otroTexto: {
+        fontSize: 12,
+        fontFamily: 'Courier New',
+        fontStyle: 'italic',
+    },
+    tarjeta: {
+        borderWidth: 3,
+        margin: 20,
+        padding: 25,
+    },
+});
+
 /* Props */
 /* export const Perfil = (props) => {
 return(
