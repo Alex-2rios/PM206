@@ -1,14 +1,44 @@
 /*Zona 1:   Importaciones de componentes y archivos*/
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, Modal, Button, Pressable } from 'react-native';
+import { StyleSheet, Text, View, Modal, Button, Pressable, Alert } from 'react-native';
 
 
 export default function ModalBottomSheet() { 
   const [modalVisible, setModalVisible] = useState(false);
+  const [modal2Visible, setModal2Visible] = useState(false);
+
+  const mostrarAlerta = () =>
+    Alert.alert(
+      'Aviso',
+      '¡Esto es un Alert de React Native!',
+      [{ text: 'Aceptar' }]
+    );
   return(
     <View style={styles.container}>
         <Text style = {styles.titulo}>Ejemplo de modal y bottom sheet</Text>
         <Button title="Abrir Modal" onPress={() => setModalVisible(true)} />
+        <View style={{ marginTop: 12 }}>
+          <Button title="Abrir Alert" onPress={mostrarAlerta} />
+        </View>
+        <View style={{ marginTop: 12 }}>
+          <Button title="Abrir Modal 2" onPress={() => setModal2Visible(true)} />
+        </View>
+
+        {/* Modal 2: centrado con animación fade */}
+        <Modal
+          animationType="fade"
+          transparent={true}
+          visible={modal2Visible}
+        >
+          <View style={styles.centeredView}>
+            <View style={styles.modalBox}>
+              <Text style={styles.texto}>Soy un modal centrado</Text>
+              <Pressable onPress={() => setModal2Visible(false)}>
+                <Text style={styles.boton}>Cerrar</Text>
+              </Pressable>
+            </View>
+          </View>
+        </Modal>
         <Modal 
           animationType="slide"
           transparent={true}
@@ -50,6 +80,20 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     backgroundColor: 'rgba(0,0,0,0.4)',
   },
+  centeredView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0,0,0,0.4)',
+  },
+  modalBox: {
+    backgroundColor: '#fff',
+    padding: 30,
+    borderRadius: 12,
+    width: '75%',
+    alignItems: 'center',
+  },
+
   bottomSheet: {
     backgroundColor: '#fff',
     padding: 25,
