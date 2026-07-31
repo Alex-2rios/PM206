@@ -1,9 +1,16 @@
 import React, { useState } from 'react';
 import {View,SafeAreaView,Text,TextInput,Pressable,StyleSheet,Alert,Platform} from 'react-native';
+import Constants from 'expo-constants';
 
-const API_URL = Platform.OS === 'web'
-  ? 'http://localhost:5000/v1/usuarios/'
-  : 'http://192.168.69.145:5000/v1/usuarios/';
+const getApiUrl = () => {
+  if (Platform.OS === 'web') {
+    return 'http://localhost:5000/v1/usuarios/';
+  }
+  const host = Constants.expoConfig?.hostUri?.split(':')[0] || '10.186.2.28';
+  return `http://${host}:5000/v1/usuarios/`;
+};
+
+const API_URL = getApiUrl();
 
 export default function App() {
   const [nombre, setNombre] = useState('');

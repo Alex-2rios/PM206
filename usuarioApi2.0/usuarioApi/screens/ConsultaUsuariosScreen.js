@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useFocusEffect } from '@react-navigation/native';
+import { useRouter } from 'expo-router';
+import Constants from 'expo-constants';
 import {
   SafeAreaView,
   View,
@@ -11,11 +13,18 @@ import {
   Pressable
 } from 'react-native';
 
-const API_URL = Platform.OS === 'web'
-  ? 'http://localhost:5000/v1/usuarios/'
-  : 'http://192.168.69.145:5000/v1/usuarios/';
+const getApiUrl = () => {
+  if (Platform.OS === 'web') {
+    return 'http://localhost:5000/v1/usuarios/';
+  }
+  const host = Constants.expoConfig?.hostUri?.split(':')[0] || '10.186.2.28';
+  return `http://${host}:5000/v1/usuarios/`;
+};
+
+const API_URL = getApiUrl();
 
 export default function ConsultaUsuariosScreen() {
+  const router = useRouter();
   const [usuarios, setUsuarios] = useState([]);
   const [cargando, setCargando] = useState(true);
   const [error, setError] = useState(null);
@@ -53,6 +62,17 @@ export default function ConsultaUsuariosScreen() {
       <Text style={styles.info}>
         Edad: {item.edad} años
       </Text>
+      <Pressable
+        style={styles.botonDetalles}
+        onPress={() =>
+          router.push({
+            pathname: '/detalles',
+            params: { id: item.id, nombre: item.nombre, edad: item.edad },
+          })
+        }
+      >
+        <Text style={styles.textoBotonDetalles}>Ver detalles →</Text>
+      </Pressable>
     </View>
   );
 
@@ -164,5 +184,14 @@ const styles = StyleSheet.create({
   info: {
     fontSize: 16,
     color: '#4B5563',
+  },
+  botonDetalles: {
+    alignSelf: 'flex-end',
+    marginTop: 10,
+  },
+  textoBotonDetalles: {
+    color: '#2563EB',
+    fontWeight: 'bold',
+    fontSize: 14,
   },
 });
