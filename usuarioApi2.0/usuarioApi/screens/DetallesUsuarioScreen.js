@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
+import { useFocusEffect } from '@react-navigation/native';
 import {
   SafeAreaView,
   View,
@@ -20,8 +21,6 @@ const getApiUrl = () => {
   const host = Constants.expoConfig?.hostUri?.split(':')[0] || '10.186.2.28';
   return `http://${host}:5000/v1/usuarios/`;
 };
-
-const API_URL = getApiUrl();
 
 export default function DetallesUsuarioScreen() {
   const router = useRouter();
@@ -47,7 +46,8 @@ export default function DetallesUsuarioScreen() {
   const obtenerDetalle = async () => {
     if (!id) return;
     try {
-      const res = await fetch(`${API_URL}${id}`);
+      const url = getApiUrl();
+      const res = await fetch(`${url}${id}`);
       const data = await res.json();
       if (data && data.data) {
         setUsuario(data.data);
@@ -57,14 +57,17 @@ export default function DetallesUsuarioScreen() {
     }
   };
 
-  useEffect(() => {
-    obtenerDetalle();
-  }, [id]);
+  useFocusEffect(
+    useCallback(() => {
+      obtenerDetalle();
+    }, [id])
+  );
 
   const handleEliminar = async () => {
     try {
       setEliminando(true);
-      const res = await fetch(`${API_URL}${id}`, {
+      const url = getApiUrl();
+      const res = await fetch(`${url}${id}`, {
         method: 'DELETE',
         headers: {
           'Authorization': 'Basic YWRtaW46MTIzNA=='

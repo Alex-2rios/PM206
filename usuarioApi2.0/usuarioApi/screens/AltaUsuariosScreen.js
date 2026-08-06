@@ -10,8 +10,6 @@ const getApiUrl = () => {
   return `http://${host}:5000/v1/usuarios/`;
 };
 
-const API_URL = getApiUrl();
-
 export default function App() {
   const [nombre, setNombre] = useState('');
   const [edad, setEdad] = useState('');
@@ -32,8 +30,9 @@ export default function App() {
       return;
     }
     try{
-      setCargando(true)
-      const respuesta = await fetch(API_URL,   
+      setCargando(true);
+      const url = getApiUrl();
+      const respuesta = await fetch(url,   
         {
           method:"POST",
           headers:{"Content-Type": "application/json"},

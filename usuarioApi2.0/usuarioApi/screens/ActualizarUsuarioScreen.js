@@ -21,8 +21,6 @@ const getApiUrl = () => {
   return `http://${host}:5000/v1/usuarios/`;
 };
 
-const API_URL = getApiUrl();
-
 export default function ActualizarUsuarioScreen() {
   const router = useRouter();
   const params = useLocalSearchParams();
@@ -48,7 +46,8 @@ export default function ActualizarUsuarioScreen() {
 
     try {
       setCargando(true);
-      const respuesta = await fetch(`${API_URL}${id}`, {
+      const url = getApiUrl();
+      const respuesta = await fetch(`${url}${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

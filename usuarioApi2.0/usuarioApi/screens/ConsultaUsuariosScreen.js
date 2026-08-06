@@ -21,8 +21,6 @@ const getApiUrl = () => {
   return `http://${host}:5000/v1/usuarios/`;
 };
 
-const API_URL = getApiUrl();
-
 export default function ConsultaUsuariosScreen() {
   const router = useRouter();
   const [usuarios, setUsuarios] = useState([]);
@@ -32,7 +30,8 @@ export default function ConsultaUsuariosScreen() {
   const obtenerUsuarios = async () => {
     try {
       setCargando(true);
-      const respuesta = await fetch(API_URL);
+      const url = getApiUrl();
+      const respuesta = await fetch(url);
       const resultado = await respuesta.json();
       
       if (resultado && resultado.data) {
