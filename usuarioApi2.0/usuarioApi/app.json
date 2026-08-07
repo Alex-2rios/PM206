@@ -44,6 +44,13 @@
         }
       ],
       "expo-font"
-    ]
+    ],
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "53e800e6-d363-4c5e-ab41-393c2e6bf538"
+      }
+    },
+    "owner": "arc31"
   }
 }
