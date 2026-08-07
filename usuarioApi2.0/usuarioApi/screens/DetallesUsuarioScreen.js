@@ -12,15 +12,7 @@ import {
   ActivityIndicator
 } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import Constants from 'expo-constants';
-
-const getApiUrl = () => {
-  if (Platform.OS === 'web') {
-    return 'http://localhost:5000/v1/usuarios/';
-  }
-  const host = Constants.expoConfig?.hostUri?.split(':')[0] || '10.186.2.28';
-  return `http://${host}:5000/v1/usuarios/`;
-};
+import { getApiUrl } from '../config/api';
 
 export default function DetallesUsuarioScreen() {
   const router = useRouter();
