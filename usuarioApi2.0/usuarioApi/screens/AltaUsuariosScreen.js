@@ -58,6 +58,7 @@ export default function App() {
         <TextInput
           style={styles.input}
           placeholder="Nombre del usuario"
+          placeholderTextColor="#6B7280"
           value={nombre}
           onChangeText={setNombre}
         />
@@ -65,6 +66,7 @@ export default function App() {
         <TextInput
           style={styles.input}
           placeholder="Edad del usuario"
+          placeholderTextColor="#6B7280"
           keyboardType="numeric"
           value={edad}
           onChangeText={setEdad}
@@ -125,6 +127,7 @@ const styles = StyleSheet.create({
     marginBottom: 18,
     backgroundColor: '#F9FAFB',
     fontSize: 16,
+    color: '#1F2937',
   },
 
   boton: {

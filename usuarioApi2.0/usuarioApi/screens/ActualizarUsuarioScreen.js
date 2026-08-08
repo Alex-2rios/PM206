@@ -72,6 +72,7 @@ export default function ActualizarUsuarioScreen() {
         <TextInput
           style={styles.input}
           placeholder="Nombre del usuario"
+          placeholderTextColor="#6B7280"
           value={nombre}
           onChangeText={setNombre}
         />
@@ -80,6 +81,7 @@ export default function ActualizarUsuarioScreen() {
         <TextInput
           style={styles.input}
           placeholder="Edad del usuario"
+          placeholderTextColor="#6B7280"
           keyboardType="numeric"
           value={edad}
           onChangeText={setEdad}
